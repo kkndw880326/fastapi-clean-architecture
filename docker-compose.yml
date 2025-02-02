@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: fastapi-ca
+      TZ: Asia/Tokyo
+    volumes:
+      - ./database/initialize:/docker-entrypoint-initdb.d
+      - ./database/config/my.cnf:/etc/mysql/conf.d/my.cnf
